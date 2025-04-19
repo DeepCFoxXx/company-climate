@@ -1,0 +1,65 @@
+openapi: 3.0.0
+info:
+  title: Company Climate API
+  version: 1.0.0
+  description: API to calculate and store the temperature closest to zero.
+
+servers:
+  - url: http://localhost:5050/api
+
+paths:
+  /temperatures:
+    post:
+      summary: Get the temperature value closest to zero
+      description: Accepts an array of numeric temperature values and returns the value closest to zero (preferring positive in a tie). Stores the result in the database.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                values:
+                  type: array
+                  description: Array of temperatures
+                  items:
+                    type: number
+              required:
+                - values
+            example:
+              values: [-5, 3, 0.2, -0.2]
+      responses:
+        '200':
+          description: Successfully calculated and stored result
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  closest:
+                    type: number
+                    description: The temperature closest to zero
+              example:
+                closest: 0.2
+        '400':
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              example:
+                error: Invalid input
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              example:
+                error: Internal server error
