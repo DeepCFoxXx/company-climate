@@ -1,0 +1,35 @@
+.chart-container {
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+.chart-wrapper {
+  height: 360px;
+  display: flex;
+  align-items: center;
+}
+
+.chart-y-labels {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 10px;
+  font-weight: bold;
+  font-size: 14px;
+  min-width: 50px;
+}
+
+.hot-label {
+  color: #ffa500;
+}
+
+.cold-label {
+  color: #007bff;
+}
+
+.chart-graph {
+  width: 100%;
+  overflow-x: auto;
+}
